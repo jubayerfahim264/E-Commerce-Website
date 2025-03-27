@@ -1,0 +1,13 @@
+.sticky-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+.nav-icon {
+  color: #ff6700;
+  cursor: pointer;
+  margin: 1rem 0;
+}

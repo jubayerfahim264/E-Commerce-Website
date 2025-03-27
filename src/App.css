@@ -12,13 +12,6 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-.navi {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: #e0e5ec;
-  /* box-shadow: 10px 10px 15px #a3b1c6, -10px -10px 20px #ffffff; */
-}
 .nav-btn-sign {
   background: var(--orange);
   /* box-shadow: 10px 10px 15px #a3b1c6, -10px -10px 20px #ffffff; */

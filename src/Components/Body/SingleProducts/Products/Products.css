@@ -1,0 +1,13 @@
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-title p {
+  font-size: 14px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.fas {
+  color: #eadb04;
+}

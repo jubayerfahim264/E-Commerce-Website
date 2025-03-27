@@ -11,15 +11,12 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import ProductsSecond from "./ProductsSecond";
 
-class Products extends Component {
+class ProductsSecond extends Component {
   render() {
     return (
       <>
-        <div className="container my-4">
-          <p className="products-title">Our Products</p>
-          <h2 className="text-capitalize">Explore our Products</h2>
+        <div className="container my-2">
           <div className="row">
             <div className="col-md-3">
               <div className="products-col">
@@ -28,7 +25,7 @@ class Products extends Component {
                     margin: "10px 0",
                   }}
                 >
-                  <img alt="Sample" src="/img/headpone1.jpg" />
+                  <img alt="Sample" src="/img/headpone5.jpg" />
                   <CardBody>
                     <CardTitle tag="h5" className="card-title">
                       <div className="font-icon">
@@ -85,7 +82,7 @@ class Products extends Component {
                     margin: "10px 0",
                   }}
                 >
-                  <img alt="Sample" src="/img/headpone2.jpg" />
+                  <img alt="Sample" src="/img/headpone6.jpg" />
                   <CardBody>
                     <CardTitle tag="h5" className="card-title">
                       <div className="font-icon">
@@ -142,7 +139,7 @@ class Products extends Component {
                     margin: "10px 0",
                   }}
                 >
-                  <img alt="Sample" src="/img/headpone3.jpg" />
+                  <img alt="Sample" src="/img/headpone7.jpg" />
                   <CardBody>
                     <CardTitle tag="h5" className="card-title">
                       <div className="font-icon">
@@ -199,7 +196,7 @@ class Products extends Component {
                     margin: "10px 0",
                   }}
                 >
-                  <img alt="Sample" src="/img/headpone4.jpg" />
+                  <img alt="Sample" src="/img/headpone8.jpg" />
                   <CardBody>
                     <CardTitle tag="h5" className="card-title">
                       <div className="font-icon">
@@ -250,10 +247,9 @@ class Products extends Component {
               </div>
             </div>
           </div>
-          <ProductsSecond />
         </div>
       </>
     );
   }
 }
-export default Products;
+export default ProductsSecond;

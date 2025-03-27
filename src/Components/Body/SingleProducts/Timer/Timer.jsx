@@ -72,7 +72,7 @@ const CountdownTimer = () => {
       {offerEnded ? (
         <h2 className="text-danger fw-bold">🎉 Offer Ended 🎉</h2>
       ) : (
-        <div className="d-flex justify-content-center flex-wrap gap-4">
+        <div className="d-flex justify-content-center flex-wrap ">
           <motion.div
             className="p-4 rounded text-white bg-primary"
             variants={boxVariants}

@@ -8,7 +8,7 @@ const HeadphoneBlack = () => (
         <div className="content">
           <p className="title">Best Headphone</p>
           <h2>Enhance Your Music Experience</h2>
-          <div className="countdown d-flex gap-3 my-3">
+          <div className="countdown d-flex my-3">
             <CountdownTimer />
           </div>
           <button className="btn btn-primary">Check it out</button>
