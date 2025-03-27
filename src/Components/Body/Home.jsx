@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header/Header";
 import HeadphoneBlack from "./SingleProducts/HeadphoneBlack";
+import Products from "./SingleProducts/Products/Products";
 import img1 from "../../assets/images/headpone4.jpg";
 import img2 from "../../assets/images/headpone2.jpg";
 import img3 from "../../assets/images/headpone3.jpg";
@@ -146,6 +147,7 @@ class Home extends Component {
           </div>
         </div>
         <HeadphoneBlack />
+        <Products />
       </>
     );
   }

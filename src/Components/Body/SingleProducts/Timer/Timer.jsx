@@ -1,17 +1,18 @@
-import "../../../../App.css";
-import { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({});
   const [offerEnded, setOfferEnded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false); // ✅ Track Audio State
+  const audioRef = useRef(null);
 
-  // LocalStorage থেকে checkoutTime বের করা
   useEffect(() => {
     let countdownEndTime = localStorage.getItem("countdownEndTime");
 
-    // যদি না থাকে তাহলে এখন থেকে 10 দিন পরে সেট করবো
     if (!countdownEndTime) {
-      countdownEndTime = new Date().getTime() + 10 * 24 * 60 * 60 * 1000;
+      countdownEndTime = new Date().getTime() + 10 * 24 * 60 * 60 * 1000; // 10 days
       localStorage.setItem("countdownEndTime", countdownEndTime);
     }
 
@@ -22,7 +23,7 @@ const CountdownTimer = () => {
       if (difference <= 0) {
         clearInterval(timer);
         setOfferEnded(true);
-        localStorage.removeItem("countdownEndTime"); // শেষ হলে clear
+        localStorage.removeItem("countdownEndTime");
       } else {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -35,29 +36,83 @@ const CountdownTimer = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  // ✅ Toggle Play/Pause
+  const handleToggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current
+          .play()
+          .catch((err) => console.log("Audio Play Error:", err));
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const boxVariants = {
+    initial: { scale: 1 },
+    animate: { scale: 1.2 },
+    transition: { repeat: Infinity, repeatType: "reverse", duration: 0.8 },
+  };
+
   return (
-    <div className="d-flex gap-3 my-4 flex-wrap">
+    <div className="my-5">
+      {/* ✅ Background Music */}
+      <audio ref={audioRef} loop>
+        <source src="audio/sci-fi-clock.mp3" type="audio/mp3" />
+      </audio>
+
+      {/* ✅ Play/Pause Button */}
+      <button className="btn bg-transparent mb-4" onClick={handleToggleAudio}>
+        {isPlaying ? "🔇 " : "🔊 "}
+      </button>
+
       {offerEnded ? (
-        <h4 className="text-danger fw-bold">🎉 Offer Ended 🎉</h4>
+        <h2 className="text-danger fw-bold">🎉 Offer Ended 🎉</h2>
       ) : (
-        <>
-          <div className="time-box bg-primary text-dark p-3 rounded">
-            <h4>{timeLeft.days}</h4>
-            <span className="text-white">Days</span>
-          </div>
-          <div className="time-box bg-success text-black  p-3 rounded">
-            <h4>{timeLeft.hours}</h4>
-            <span className="text-white">Hours</span>
-          </div>
-          <div className="time-box bg-warning text-dark p-3 rounded">
-            <h4>{timeLeft.minutes}</h4>
-            <span className="text-white">Minutes</span>
-          </div>
-          <div className="time-box bg-danger text-dark p-3 rounded">
-            <h4>{timeLeft.seconds}</h4>
-            <span className="text-white">Seconds</span>
-          </div>
-        </>
+        <div className="d-flex justify-content-center flex-wrap gap-4">
+          <motion.div
+            className="p-4 rounded text-white bg-primary"
+            variants={boxVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <h3>{timeLeft.days}</h3>
+            <span>Days</span>
+          </motion.div>
+
+          <motion.div
+            className="p-4 rounded text-white bg-success"
+            variants={boxVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <h3>{timeLeft.hours}</h3>
+            <span>Hours</span>
+          </motion.div>
+
+          <motion.div
+            className="p-4 rounded text-dark bg-warning"
+            variants={boxVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <h3>{timeLeft.minutes}</h3>
+            <span>Minutes</span>
+          </motion.div>
+
+          <motion.div
+            className="p-4 rounded text-white bg-danger"
+            variants={boxVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <h3>{timeLeft.seconds}</h3>
+            <span>Seconds</span>
+          </motion.div>
+        </div>
       )}
     </div>
   );
